@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
-const API_URL = "https://wallet-tracker-api-yrrd.onrender.com/api"
+const API_URL = "http://localhost:5001/api"
 
 export const useTransactions = (userId) => {
     const [transactions, setTransactions] = useState([]);
@@ -23,13 +23,13 @@ export const useTransactions = (userId) => {
         } catch (error) {
             console.log("Error fetching transactions:", error);
         }
-    }, [userId]);
+    },[userId]);
 
     const fetchSummary = useCallback (async () => {
         try {
             const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
             const data = await response.json();
-            setSummary(data);
+            setTransactions(data);
         } catch (error) {
             console.log("Error fetching transactions:", error);
         }
@@ -51,7 +51,7 @@ export const useTransactions = (userId) => {
 
     const deleteTransaction = async (id) => {
         try {
-            const response = await fetch(`${API_URL}/transactions/${id}`, { method: "DELETE" });
+            const response = await fetch(`${API_URL}/transactions/${userId}`, { method: "DELETE" });
 
             if (!response.ok) throw new Error("Failed to delete transaction");
             loadData();
