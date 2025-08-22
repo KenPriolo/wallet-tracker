@@ -6,7 +6,7 @@ import { formatDate } from "../lib/utils"
 
 //Map categories to their perspective icons
 const CATEFORY_ICONS = {
-    "Food & Drinnks": "fast-food",
+    "Food & Drinks": "fast-food",
     Shopping: "cart",
     Transportation: "car",
     Entertainment: "film",
@@ -17,13 +17,13 @@ const CATEFORY_ICONS = {
 
 export const TransactionItem = ({ item, onDelete }) => {
     const isIncome = parseFloat(item.amount) > 0;
-    const iconNmae = CATEFORY_ICONS[item.category] || "pricatag-outline";
+    const iconName = CATEFORY_ICONS[item.category] || "pricatag-outline";
 
     return (
         <View style={styles.transactionCard} key={item.id}>
             <TouchableOpacity style={styles.transactionContent}>
                 <View style={styles.categoryIconContainer}>
-                    <Ionicons name={iconNmae} size={22} color={isIncome ? COLORS.income : COLORS.expense} />
+                    <Ionicons name={iconName} size={22} color={isIncome ? COLORS.income : COLORS.expense} />
                 </View>
                 <View style={styles.transactionLeft}>
                     <Text style={styles.transactionTitle}>{item.title}</Text>

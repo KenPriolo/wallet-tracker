@@ -1,0 +1,1 @@
+export const API_URL = "https://wallet-tracker-api-yrrd.onrender.com/api"
